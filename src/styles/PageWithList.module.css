@@ -24,7 +24,9 @@ section.wrapper ol {
 }
 
 section.wrapper footer {
+  align-self: end;
   grid-area: footer;
+  height: 6rem;
 }
 
 li.listHeading {
