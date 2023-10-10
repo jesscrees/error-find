@@ -14,7 +14,7 @@ import styles from '@/styles/PageWithList.module.css'
 
 export default function Home({ quiz }: { quiz: QuizData }) {
   const [isResultsLinkEnabled, setIsResultsLinkEnabled] = useState<boolean>(false)
-  const [quizData, setQuizData] = useState<QuizData>()
+  const [quizData, setQuizData] = useState<QuizData>(quiz)
 
   // Ensure that quiz data has been stored in local storage
   // but retrieve pre-existing quiz data, if it already exists,
@@ -24,9 +24,9 @@ export default function Home({ quiz }: { quiz: QuizData }) {
 
     if (dataRetrievedFromLocalStorage === null) {
       setDataInLocalStorage(quiz)
+    } else {
+      setQuizData(dataRetrievedFromLocalStorage)
     }
-
-    setQuizData(dataRetrievedFromLocalStorage)
 
     // Find out if the user has started to answer questions
     // If they have then we can enable the results link
