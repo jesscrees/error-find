@@ -5,12 +5,12 @@ function Button({
   onClick
 }: {
   label: string
-  onClick: Function
+  onClick: React.MouseEventHandler<HTMLButtonElement>
 }) {
   return (
     <button
       className={`${styles.button}`}
-      onClick={() => onClick}
+      onClick={onClick}
     >
       {label}
     </button>
