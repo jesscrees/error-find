@@ -1,0 +1,14 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  height: -webkit-fill-available;
+  justify-content: space-around;
+  text-align: left;
+}
+
+.section .headingContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 0 4rem;
+}

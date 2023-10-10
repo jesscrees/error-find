@@ -7,7 +7,7 @@ import Question from '@/components/Question/Question'
 import RoundIntroScreen from '@/components/RoundIntroScreen/RoundIntroScreen'
 import { QUESTION_LABEL } from '@/constants/language'
 import { doesActivityContainRounds, getDataFromLocalStorage, setDataInLocalStorage } from '@/helpers'
-import styles from '@/styles/Question.module.css'
+import styles from '@/styles/QuestionPage.module.css'
 
 type PageProps = {
   activity: Activity
@@ -149,23 +149,25 @@ export default function QuestionPage({
         />
       )}
 
-      <main className={styles.main}>
-        <h2>
-          {activity.activity_name}
-          {isRound && (` / ${(
-            activity as ActivityWithRounds).questions[currentRoundIndex].round_title
-          }`)}
-        </h2>
+      <section className={styles.section}>
+        <div className={styles.headingContainer}>
+          <h2>
+            {activity.activity_name}
+            {isRound && (` / ${(
+              activity as ActivityWithRounds).questions[currentRoundIndex].round_title
+            }`)}
+          </h2>
 
-        <h1>
-          {QUESTION_LABEL}{currentQuestionIndex + 1}.
-        </h1>
+          <h1>
+            {QUESTION_LABEL}{currentQuestionIndex + 1}.
+          </h1>
+        </div>
 
         <Question
           question={getCurrentQuestion(activity)}
           onAnswerChosen={(chosenAnswer: boolean) => submitAnswer(chosenAnswer)}
         />
-      </main>
+      </section>
     </>
   )
 }

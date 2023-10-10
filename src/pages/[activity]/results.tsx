@@ -4,13 +4,16 @@ import { useRouter } from 'next/router'
 import Footer from '@/components/Footer/Footer'
 import PageHeader from '@/components/PageHeader'
 import { doesActivityContainRounds, getDataFromLocalStorage } from '@/helpers'
-import styles from '@/styles/Results.module.css'
+import styles from '@/styles/PageWithList.module.css'
 import ListOfAnsweredQuestions from '@/components/ListOfAnsweredQuestions/ListOfAnsweredQuestions'
 import ListOfAnsweredRounds from '@/components/ListOfAnsweredRounds/ListOfAnsweredRounds'
+import { HEADING_RESULTS } from '@/constants/language'
 
 export default function ActivityResults() {
   const router = useRouter()
   const activityId = router.query.activity
+
+  const [activityName, setActivityName] = useState<string>()
 
   const [activityQuestions, setActivityQuestions] = useState<Question[]>()
   const [activityRounds, setActivityRounds] = useState<Round[]>()
@@ -25,6 +28,7 @@ export default function ActivityResults() {
    }
 
    const currentActivity = dataRetrievedFromLocalStorage?.activities[Number(activityId) - 1]
+   setActivityName(currentActivity?.activity_name)
 
    if (doesActivityContainRounds(currentActivity)) {
     setActivityRounds(currentActivity.questions)
@@ -37,8 +41,16 @@ export default function ActivityResults() {
     <>
       <PageHeader />
 
-      <main className={styles.main}>
-        Activity {activityId} results
+      <section className={styles.wrapper}>
+        <div className={styles.headingContainer}>
+          <h2>
+            {activityName}
+          </h2>
+
+          <h1>
+            {HEADING_RESULTS}
+          </h1>
+        </div>
 
         {activityQuestions && activityQuestions?.length > 0 && (
           <ListOfAnsweredQuestions answeredQuestions={activityQuestions} />
@@ -47,9 +59,9 @@ export default function ActivityResults() {
         {activityRounds && activityRounds?.length > 0 && (
           <ListOfAnsweredRounds answeredRounds={activityRounds} />
         )}
-      </main>
 
-      <Footer />
+        <Footer />
+      </section>
     </>
   )
 }

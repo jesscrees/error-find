@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  width: 100%;
 }
 
 .list li {
@@ -11,6 +12,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  width: 100%;
 }
 .list > li:first-of-type {
   border-top: var(--border);
@@ -21,9 +23,10 @@
   flex-direction: row;
   gap: 2rem;
   justify-content: space-between;
-  width: 20rem;
 }
 
-.list li span {
+.list li > span {
+  font-weight: var(--font-weight-bold);
   text-transform: uppercase;
+  padding: 1rem 2rem;
 }

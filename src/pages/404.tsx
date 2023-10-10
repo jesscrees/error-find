@@ -8,7 +8,7 @@ export default function FourOhFour() {
     <>
       <PageHeader />
 
-      <main>
+      <section>
         <h1>404 - Page Not Found</h1>
 
         <Link href="/">
@@ -18,7 +18,7 @@ export default function FourOhFour() {
         <Link href="/results">
           {NAVIGATION_LABEL_RESULTS}
         </Link>
-      </main>
+      </section>
     </>
   )
 }

@@ -13,7 +13,7 @@ function ListOfAnsweredQuestions({
           <li key={question.order}>
             <div className={styles.answerContainer}>
               <span>{QUESTION_LABEL}{question.order}</span>
-              <span>
+              <span className={styles.result}>
                 {
                   question.is_correct === question.user_answers[0]
                   ? ANSWER_LABEL_CORRECT

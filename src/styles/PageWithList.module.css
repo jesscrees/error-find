@@ -1,0 +1,42 @@
+section.wrapper {
+  display: grid;
+  height: 100%;
+
+  grid-template-areas:
+    "heading"
+    "list"
+    "list"
+    "list"
+    "footer";
+}
+
+section.wrapper .headingContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  grid-area: heading;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+section.wrapper ol {
+  grid-area: list;
+}
+
+section.wrapper footer {
+  grid-area: footer;
+}
+
+li.listHeading {
+  display: flex;
+  flex-direction: column;
+}
+
+li.listHeading > span {
+  font-weight: var(--font-weight-bold);
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  text-align: center;
+}

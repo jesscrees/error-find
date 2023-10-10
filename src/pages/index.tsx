@@ -6,7 +6,7 @@ import Footer from '@/components/Footer/Footer'
 import PageHeader from '@/components/PageHeader'
 import { HEADING_CAE, NAVIGATION_LABEL_RESULTS } from '@/constants/language'
 import { hasUserAnsweredEveryQuestion, getDataFromLocalStorage, setDataInLocalStorage } from '@/helpers'
-import styles from '@/styles/Home.module.css'
+import styles from '@/styles/PageWithList.module.css'
 
 export default function Home({ quiz }: { quiz: QuizData }) {
   const [isResultsLinkEnabled, setIsResultsLinkEnabled] = useState<boolean>(false)
@@ -34,23 +34,25 @@ export default function Home({ quiz }: { quiz: QuizData }) {
     <>
       <PageHeader />
 
-      <main className={styles.main}>
-        <h3>{HEADING_CAE}</h3>
+      <section className={styles.wrapper}>
+        <div className={styles.headingContainer}>
+          <h2>{HEADING_CAE}</h2>
 
-        {quizData?.name && (
-          <h1>{quizData?.name}</h1>
-        )}
+          {quizData?.name && (
+            <h1>{quizData?.name}</h1>
+          )}
+        </div>
 
         {quizData?.activities && quizData?.activities?.length > 0 && (
           <ActivityList activities={quizData?.activities} />
         )}
-      </main>
 
-      <Footer
-        linkDisabled={!isResultsLinkEnabled}
-        linkHref="results"
-        linkLabel={NAVIGATION_LABEL_RESULTS}
-      />
+        <Footer
+          linkDisabled={!isResultsLinkEnabled}
+          linkHref="results"
+          linkLabel={NAVIGATION_LABEL_RESULTS}
+        />
+      </section>
     </>
   )
 }

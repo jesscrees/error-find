@@ -8,7 +8,12 @@
   --background-secondary-rgb: 252, 253, 255;
   --foreground-disabled-rgb: 206, 206, 206;
 
-  --border: 2px solid rgb(241, 249, 255);
+  --border-rgb: 241, 249, 255;
+  --border-scroll-rgb: 194, 228, 253;
+
+  --border: 2px solid rgb(var(--border-rgb));
+
+  --font-weight-bold: 500;
 
   --hover-transtion: 0.1s all ease-in-out;
   --hover-color-change: brightness(85%);
@@ -39,8 +44,42 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+main {
+  height: 100vh;
+}
+
+ol {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  max-height: -webkit-fill-available;
+  overflow-x: hidden;
+  scroll-behavior: auto;
+  height: fit-content;
+}
+
+ol::-webkit-scrollbar {
+  width: 0.5rem; 
+}
+ol::-webkit-scrollbar-track {
+  background: rgb(var(--border-rgb));
+  border: 0.1rem solid rgb(var(--border-scroll-rgb));
+  border-radius: 10rem;
+}
+ol::-webkit-scrollbar-thumb {
+  background-color: rgb(var(--foreground-rgb));
+  border: 0.1rem solid rgb(var(--foreground-rgb));
+  border-radius: 10rem;
+}
+
+
+h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
 }

@@ -3,7 +3,7 @@
   border: none;
   color: inherit;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
   padding: 2rem;
   text-transform: uppercase;
   transition: var(--hover-transtion);

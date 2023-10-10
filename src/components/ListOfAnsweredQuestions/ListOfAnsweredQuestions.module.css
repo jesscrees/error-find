@@ -1,26 +1,35 @@
 .list {
   background-color: rgb(var(--background-secondary-rgb));
+  width: 100%;
 }
 
 .list li {
+  align-items: center;
   border-bottom: var(--border);
   display: flex;
   justify-content: center;
   padding: 1rem 2rem;
   text-align: center;
+  width: 100%;
 }
 .list li:first-of-type {
   border-top: var(--border);
 }
 
 .list li .answerContainer {
+  align-items: center;
   display: flex;
   flex-direction: row;
   gap: 2rem;
   justify-content: space-between;
-  width: 20rem;
+  max-width: 20rem;
+  width: 100%;
 }
 
 .list li span {
   text-transform: uppercase;
+}
+
+.list li span.result {
+  font-weight: var(--font-weight-bold);
 }
