@@ -16,3 +16,11 @@ export function getDataFromLocalStorage() {
 export function setDataInLocalStorage(data: QuizData) {
   return localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
 }
+
+/*
+ * Check if activity contains rounds or not
+ */
+export function doesActivityContainRounds(activity: ActivityWithRounds|ActivityWithoutRounds) {
+  // TODO: Can this function be replaced with better typescript checking?
+  return activity?.questions[0]?.hasOwnProperty('round_title')
+}
