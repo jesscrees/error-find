@@ -6,7 +6,7 @@ import {
 } from '@/helpers'
 import styles from './ActivityList.module.css'
 
-function ActivityList({ activities }: { activities: Activity[] }) {
+function ActivityList({ activities }: { activities: Activity[]|undefined }) {
   const INITIAL_QUESTION_ID = 1
 
   return (

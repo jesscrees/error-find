@@ -43,12 +43,10 @@ export default function Home({ quiz }: { quiz: QuizData }) {
         <div className={styles.headingContainer}>
           <h2>{HEADING_CAE}</h2>
 
-          {quizData?.name && <h1>{quizData?.name}</h1>}
+          <h1>{quizData?.name}</h1>
         </div>
 
-        {quizData?.activities && quizData?.activities?.length > 0 && (
-          <ActivityList activities={quizData?.activities} />
-        )}
+        <ActivityList activities={quizData?.activities} />
 
         <Footer
           linkDisabled={!isResultsLinkEnabled}
