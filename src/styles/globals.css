@@ -43,14 +43,13 @@ main {
   height: 100dvh;
 }
 
-ol {
+main > section > ol {
   display: flex;
   flex-direction: column;
   list-style-type: none;
   max-height: 70dvh;
   overflow-x: hidden;
   scroll-behavior: auto;
-  height: fit-content;
 }
 
 /* Custom scroll style */
