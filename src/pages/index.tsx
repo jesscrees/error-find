@@ -27,15 +27,17 @@ export default function Home({ quiz }: { quiz: QuizData }) {
     } else {
       setQuizData(dataRetrievedFromLocalStorage)
     }
+  }, [quiz])
 
-    // Find out if the user has started to answer questions
-    // If they have then we can enable the results link
+  // Find out if the user has started to answer questions
+  // If they have then we can enable the results link
+  useEffect(() => {
     async function findIfAllQuestionsAnswered() {
-      const results = await hasUserAnsweredEveryQuestion(dataRetrievedFromLocalStorage)
+      const results = await hasUserAnsweredEveryQuestion(quizData)
       setIsResultsLinkEnabled(results)
     }
     findIfAllQuestionsAnswered()
-  }, [quiz])
+  }, [quizData])
 
   return (
     <>
