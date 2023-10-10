@@ -1,3 +1,22 @@
 .list {
-  border: 1px solid red;
+  background-color: rgb(var(--background-secondary-rgb));
+}
+
+.list li {
+  border-color: rgb(246, 250, 254);
+  border-bottom: 1px solid;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+.list li:first-of-type {
+  border-top: 1px solid;
+}
+
+.list li a {
+  text-transform: uppercase;
+  transition: 0.1s all ease-in-out;
+}
+
+.list li a:hover {
+  filter: brightness(85%);
 }
