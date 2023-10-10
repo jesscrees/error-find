@@ -1,12 +1,12 @@
-import Link from "next/link";
+import Link from 'next/link'
 
-import { NAVIGATION_LABEL_HOME } from "@/constants/language";
+import { NAVIGATION_LABEL_HOME } from '@/constants/language'
 import styles from './Footer.module.css'
 
 function Footer({
   linkDisabled = false,
   linkHref = '',
-  linkLabel = NAVIGATION_LABEL_HOME
+  linkLabel = NAVIGATION_LABEL_HOME,
 }: {
   linkDisabled?: boolean
   linkHref?: string
@@ -18,12 +18,12 @@ function Footer({
       <Link
         aria-disabled={linkDisabled}
         className={linkDisabled ? styles.disabled : ''}
-        href={!linkDisabled ?`/${linkHref}` : ''}
+        href={!linkDisabled ? `/${linkHref}` : ''}
       >
         {linkLabel}
       </Link>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

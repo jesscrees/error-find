@@ -1,11 +1,7 @@
 import ListOfAnsweredQuestions from '../ListOfAnsweredQuestions/ListOfAnsweredQuestions'
 import styles from './ListOfAnsweredRounds.module.css'
 
-function ListOfAnsweredRounds({
-  answeredRounds
-}: {
-  answeredRounds: Round[]
-}) {
+function ListOfAnsweredRounds({ answeredRounds }: { answeredRounds: Round[] }) {
   return (
     <ol className={styles.list}>
       {answeredRounds.map((round: Round) => {

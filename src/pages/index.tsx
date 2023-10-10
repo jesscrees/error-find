@@ -5,12 +5,15 @@ import ActivityList from '@/components/ActivityList/ActivityList'
 import Footer from '@/components/Footer/Footer'
 import PageHeader from '@/components/PageHeader'
 import { HEADING_CAE, NAVIGATION_LABEL_RESULTS } from '@/constants/language'
-import { hasUserAnsweredEveryQuestion, getDataFromLocalStorage, setDataInLocalStorage } from '@/helpers'
+import {
+  hasUserAnsweredEveryQuestion,
+  getDataFromLocalStorage,
+  setDataInLocalStorage,
+} from '@/helpers'
 import styles from '@/styles/PageWithList.module.css'
 
 export default function Home({ quiz }: { quiz: QuizData }) {
   const [isResultsLinkEnabled, setIsResultsLinkEnabled] = useState<boolean>(false)
-
   const [quizData, setQuizData] = useState<QuizData>()
 
   // Ensure that quiz data has been stored in local storage
@@ -27,7 +30,9 @@ export default function Home({ quiz }: { quiz: QuizData }) {
 
     // Find out if the user has started to answer questions
     // If they have then we can enable the results link
-    setIsResultsLinkEnabled(hasUserAnsweredEveryQuestion(dataRetrievedFromLocalStorage))
+    setIsResultsLinkEnabled(
+      hasUserAnsweredEveryQuestion(dataRetrievedFromLocalStorage)
+    )
   }, [quiz])
 
   return (
@@ -38,9 +43,7 @@ export default function Home({ quiz }: { quiz: QuizData }) {
         <div className={styles.headingContainer}>
           <h2>{HEADING_CAE}</h2>
 
-          {quizData?.name && (
-            <h1>{quizData?.name}</h1>
-          )}
+          {quizData?.name && <h1>{quizData?.name}</h1>}
         </div>
 
         {quizData?.activities && quizData?.activities?.length > 0 && (
@@ -58,9 +61,9 @@ export default function Home({ quiz }: { quiz: QuizData }) {
 }
 
 export const getStaticProps = (async () => {
-  const quiz = await fetch(`${
-    process.env.NEXT_PUBLIC_API_URL
-  }`).then((res) => res.json())
+  const quiz = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`).then((res) =>
+    res.json()
+  )
 
   return {
     props: {

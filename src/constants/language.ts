@@ -1,4 +1,5 @@
 export const HEADING_CAE = 'CAE'
+export const HEADING_PAGE_NOT_FOUND = 'Page not found'
 export const HEADING_RESULTS = 'Results'
 
 export const ANSWER_LABEL_CORRECT = 'Correct'

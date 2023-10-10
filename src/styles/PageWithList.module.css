@@ -35,8 +35,8 @@ li.listHeading {
 }
 
 li.listHeading > span {
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-medium);
   padding: 1rem 2rem;
-  text-transform: uppercase;
   text-align: center;
+  text-transform: uppercase;
 }

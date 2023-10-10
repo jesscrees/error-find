@@ -6,7 +6,11 @@ import PageHeader from '@/components/PageHeader'
 import Question from '@/components/Question/Question'
 import RoundIntroScreen from '@/components/RoundIntroScreen/RoundIntroScreen'
 import { QUESTION_LABEL } from '@/constants/language'
-import { doesActivityContainRounds, getDataFromLocalStorage, setDataInLocalStorage } from '@/helpers'
+import {
+  doesActivityContainRounds,
+  getDataFromLocalStorage,
+  setDataInLocalStorage,
+} from '@/helpers'
 import styles from '@/styles/QuestionPage.module.css'
 
 type PageProps = {
@@ -39,11 +43,8 @@ export default function QuestionPage({
     Number(questionId) - 1
   )
 
-  // If the activity is a round, is it the beginning of the round?
   const isRound = doesActivityContainRounds(activity)
-  const [isBeginningOfRound, setIsBeginningOfRound] = useState<boolean>(
-    isRound && Number(questionId) === 1
-  )
+  const [isBeginningOfRound, setIsBeginningOfRound] = useState<boolean>()
 
   // Ensure the round and question indexes are correct when the page url changes
   useEffect(() => {
@@ -51,8 +52,20 @@ export default function QuestionPage({
     setCurrentQuestionIndex(Number(questionId) - 1)
   }, [activityId, roundId, questionId])
 
+  // Get current quiz data from local storage
+  useEffect(() => {
+    let dataRetrievedFromLocalStorage = getDataFromLocalStorage()
+
+    if (dataRetrievedFromLocalStorage === null) {
+      // If data in local storage is missing, use the quiz data from static props
+      setDataInLocalStorage(quiz)
+      dataRetrievedFromLocalStorage = quiz
+    }
+
+    setQuizData(dataRetrievedFromLocalStorage)
+  }, [quiz])
+
   // Show a brief round intro screen if a new round has begun
-  // TODO: this can be improved as we're setting some of this as state when the page loads
   useEffect(() => {
     let roundIntroScreenTimer: NodeJS.Timeout
 
@@ -69,26 +82,17 @@ export default function QuestionPage({
     }
   }, [currentRoundIndex, isRound, questionId])
 
-  // Get current quiz data from local storage
-  useEffect(() => {
-    let dataRetrievedFromLocalStorage = getDataFromLocalStorage();
-
-    if (dataRetrievedFromLocalStorage === null) {
-      // If data in local storage is missing, use the quiz data from static props
-      setDataInLocalStorage(quiz)
-      dataRetrievedFromLocalStorage = quiz
-    }
-
-    setQuizData(dataRetrievedFromLocalStorage)
-  }, [quiz]);
-
   function goToActivityResultsPage() {
     router.push(`/${activityId}/results`)
   }
 
   function getCurrentQuestion(_activity: Activity) {
-    if (isRound && currentRoundIndex < (_activity as ActivityWithRounds).questions.length) {
-      return (_activity as ActivityWithRounds).questions[currentRoundIndex].questions[currentQuestionIndex]
+    if (
+      isRound &&
+      currentRoundIndex < (_activity as ActivityWithRounds).questions.length
+    ) {
+      return (_activity as ActivityWithRounds).questions[currentRoundIndex]
+        .questions[currentQuestionIndex]
     }
 
     return (_activity as ActivityWithoutRounds).questions[currentQuestionIndex]
@@ -100,14 +104,18 @@ export default function QuestionPage({
 
     // Store the answer within the existing quiz data structure
     if (isRound) {
-      (currentQuizData.activities[activity.order - 1] as ActivityWithRounds).questions[currentRoundIndex].questions[currentQuestionIndex].user_answers = [chosenAnswer]
+      (
+        currentQuizData.activities[activity.order - 1] as ActivityWithRounds
+      ).questions[currentRoundIndex].questions[
+        currentQuestionIndex
+      ].user_answers = [chosenAnswer]
     } else {
-      (currentQuizData.activities[activity.order - 1] as ActivityWithoutRounds).questions[currentQuestionIndex].user_answers = [chosenAnswer]
+      (
+        currentQuizData.activities[activity.order - 1] as ActivityWithoutRounds
+      ).questions[currentQuestionIndex].user_answers = [chosenAnswer]
     }
 
     // Store the updated data
-    // TODO: setQuizData might be unneccessary here
-    setQuizData(currentQuizData)
     setDataInLocalStorage(currentQuizData)
 
     // Send the user to the next step of the quiz
@@ -118,17 +126,19 @@ export default function QuestionPage({
       router.push(`/${activityId}/${roundId}/${nextQuestionIndex}`)
     } else {
       if (isRound) {
-        if (currentRoundIndex < (activity as ActivityWithRounds).questions.length - 1) {
-          // Go to next round
-          // TODO - talk about why this automatically goes to the next round instead of prompting user as per the brief
+        if (
+          currentRoundIndex <
+          (activity as ActivityWithRounds).questions.length - 1
+        ) {
+          // Go to next round automatically
           let nextRoundIndex = Number(roundId) + 1
           router.push(`/${activityId}/${nextRoundIndex}/1`)
         } else {
-          // Last round is finished, go to results
+          // Last round is finished, so go to results
           goToActivityResultsPage()
         }
       } else {
-        // Last question is finished, go to results
+        // Last question is finished, so go to results
         goToActivityResultsPage()
       }
     }
@@ -142,9 +152,7 @@ export default function QuestionPage({
         <RoundIntroScreen
           activityTitle={activity.activity_name}
           roundTitle={
-            (activity as ActivityWithRounds)
-              .questions[currentRoundIndex]
-              .round_title
+            (activity as ActivityWithRounds).questions[currentRoundIndex].round_title
           }
         />
       )}
@@ -153,13 +161,15 @@ export default function QuestionPage({
         <div className={styles.headingContainer}>
           <h2>
             {activity.activity_name}
-            {isRound && (` / ${(
-              activity as ActivityWithRounds).questions[currentRoundIndex].round_title
-            }`)}
+            {isRound &&
+              ` / ${
+                (activity as ActivityWithRounds).questions[currentRoundIndex].round_title
+              }`}
           </h2>
 
           <h1>
-            {QUESTION_LABEL}{currentQuestionIndex + 1}.
+            {QUESTION_LABEL}
+            {currentQuestionIndex + 1}.
           </h1>
         </div>
 

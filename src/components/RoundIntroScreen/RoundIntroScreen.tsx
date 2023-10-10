@@ -2,7 +2,7 @@ import styles from './RoundIntroScreen.module.css'
 
 function RoundIntroScreen({
   activityTitle,
-  roundTitle
+  roundTitle,
 }: {
   activityTitle: string
   roundTitle: string
@@ -12,7 +12,7 @@ function RoundIntroScreen({
       <h2>{activityTitle}</h2>
       <h1>{roundTitle}</h1>
     </div>
-  );
+  )
 }
 
-export default RoundIntroScreen;
+export default RoundIntroScreen
