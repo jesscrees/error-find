@@ -1,3 +1,8 @@
 .question {
   border: 1px solid red;
 }
+
+.question .buttonContainer {
+  display: flex;
+  flex-direction: row;
+}

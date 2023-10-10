@@ -10,12 +10,20 @@ function Question({
   onAnswerChosen: Function
 }) {
   return (
-    <div className={`${styles.question}`}>
+    <section className={`${styles.question}`}>
       <p>{question.stimulus}</p>
 
-      <Button label={BUTTON_LABEL_CORRECT} onClick={() => onAnswerChosen(true)} />
-      <Button label={BUTTON_LABEL_INCORRECT} onClick={() => onAnswerChosen(false)} />
-    </div>
+      <div className={`${styles.buttonContainer}`}>
+        <Button
+          label={BUTTON_LABEL_CORRECT}
+          onClick={() => onAnswerChosen(true)}
+        />
+        <Button
+          label={BUTTON_LABEL_INCORRECT}
+          onClick={() => onAnswerChosen(false)}
+        />
+      </div>
+    </section>
   );
 }
 
