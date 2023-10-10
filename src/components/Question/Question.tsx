@@ -1,17 +1,41 @@
-import { BUTTON_LABEL_CORRECT, BUTTON_LABEL_INCORRECT } from "@/constants/language";
-import Button from "../Button/Button";
+import { useEffect, useState } from 'react'
+
+import {
+  BUTTON_LABEL_CORRECT,
+  BUTTON_LABEL_INCORRECT,
+} from '@/constants/language'
+import Button from '../Button/Button'
 import styles from './Question.module.css'
 
 function Question({
   question,
-  onAnswerChosen
+  onAnswerChosen,
 }: {
   question: Question
   onAnswerChosen: Function
 }) {
+  // Format question to turn markdown into html
+  const [formattedQuestion, setFormattedQuestion] = useState<string>('')
+
+  useEffect(() => {
+    const replacedFirstAsterisk = question?.stimulus.replace(
+      '*', 
+      '<strong>'
+    )
+
+    const replacedSecondAsterisk = replacedFirstAsterisk.replace(
+      '*',
+      '</strong>'
+    )
+
+    setFormattedQuestion(replacedSecondAsterisk)
+  }, [question])
+
   return (
     <section className={`${styles.question}`}>
-      <p>{question.stimulus}</p>
+      <div className={`${styles.textContainer}`}>
+        <p dangerouslySetInnerHTML={{ __html: formattedQuestion }}></p>
+      </div>
 
       <div className={`${styles.buttonContainer}`}>
         <Button
@@ -24,7 +48,7 @@ function Question({
         />
       </div>
     </section>
-  );
+  )
 }
 
-export default Question;
+export default Question

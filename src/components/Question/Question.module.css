@@ -1,5 +1,16 @@
 .question {
-  border: 1px solid red;
+
+}
+
+.question .textContainer {
+  align-items: center;
+  background-color: rgb(252, 253, 255);
+  border-color: rgb(190, 225, 253);
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  display: flex;
+  height: 4rem;
+  padding: 3rem 5rem;
 }
 
 .question .buttonContainer {
