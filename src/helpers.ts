@@ -29,11 +29,11 @@ export function doesActivityContainRounds(
 /*
  * Check if user has answered every question
  */
-export function hasUserAnsweredEveryQuestion(data: QuizData) {
+export async function hasUserAnsweredEveryQuestion(data: QuizData) {
   // Go through every question, in every activity, and see if there are any answers in user_answers array
   let hasUserNotAnsweredAQuestion = false
 
-  data?.activities.map((activity: Activity) => {
+  await data?.activities.map((activity: Activity) => {
     hasUserNotAnsweredAQuestion = !hasUserAnsweredEveryQuestionInActivity(activity)
   })
 
