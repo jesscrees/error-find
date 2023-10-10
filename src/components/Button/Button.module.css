@@ -4,7 +4,7 @@
   color: inherit;
   cursor: pointer;
   font-weight: var(--font-weight-bold);
-  padding: 2rem;
+  padding: 4rem 2rem;
   text-transform: uppercase;
   transition: var(--hover-transtion);
   width: 100%;

@@ -15,7 +15,7 @@
   width: 100%;
 }
 .list > li:first-of-type {
-  border-top: var(--border);
+  border-top: var(--border-light);
 }
 
 .list li .answerContainer {
@@ -28,5 +28,5 @@
 .list li > span {
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
-  padding: 1rem 2rem;
+  padding: var(--list-item-padding);
 }

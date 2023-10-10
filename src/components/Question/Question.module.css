@@ -1,10 +1,10 @@
 .question .textContainer {
   align-items: center;
   background-color: rgb(var(--background-secondary-rgb));
-  border-top: var(--border);
-  border-bottom: var(--border);
+  border-top: var(--border-dark);
+  border-bottom: var(--border-dark);
   display: flex;
-  padding: 3.5rem 4rem;
+  padding: 3rem 4rem;
 }
 
 .question .buttonContainer {

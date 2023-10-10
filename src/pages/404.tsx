@@ -1,23 +1,19 @@
-import Link from 'next/link'
-
+import Footer from '@/components/Footer/Footer'
 import PageHeader from '@/components/PageHeader'
-import {
-  HEADING_PAGE_NOT_FOUND,
-  NAVIGATION_LABEL_HOME,
-  NAVIGATION_LABEL_RESULTS,
-} from '@/constants/language'
+import { HEADING_PAGE_NOT_FOUND } from '@/constants/language'
+import styles from '@/styles/PageWithList.module.css'
 
 export default function FourOhFour() {
   return (
     <>
       <PageHeader />
 
-      <section>
-        <h1>{HEADING_PAGE_NOT_FOUND}</h1>
+      <section className={styles.wrapper}>
+        <div className={styles.headingContainer}>
+          <h1>{HEADING_PAGE_NOT_FOUND}</h1>
+        </div>
 
-        <Link href="/">{NAVIGATION_LABEL_HOME}</Link>
-
-        <Link href="/results">{NAVIGATION_LABEL_RESULTS}</Link>
+        <Footer />
       </section>
     </>
   )

@@ -8,9 +8,11 @@ import Button from '../Button/Button'
 import styles from './Question.module.css'
 
 function Question({
+  className,
   question,
   onAnswerChosen,
 }: {
+  className: string
   question: Question
   onAnswerChosen: Function
 }) {
@@ -32,7 +34,7 @@ function Question({
   }, [question])
 
   return (
-    <section className={styles.question}>
+    <section className={`${className} ${styles.question}`}>
       <div className={styles.textContainer}>
         <p dangerouslySetInnerHTML={{ __html: formattedQuestion }}></p>
       </div>

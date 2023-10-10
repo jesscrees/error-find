@@ -29,6 +29,31 @@ section.wrapper footer {
   height: 6rem;
 }
 
+/* Only outermost list scrolls */
+section.wrapper > ol {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  max-height: 70dvh;
+  overflow-x: hidden;
+  scroll-behavior: auto;
+}
+
+/* Custom scroll style */
+section.wrapper ol::-webkit-scrollbar {
+  width: 0.5rem; 
+}
+section.wrapper ol::-webkit-scrollbar-track {
+  background: rgb(var(--border-rgb));
+  border: 0.1rem solid rgb(var(--border-scroll-rgb));
+  border-radius: 10rem;
+}
+section.wrapper ol::-webkit-scrollbar-thumb {
+  background-color: rgb(var(--foreground-rgb));
+  border: 0.1rem solid rgb(var(--foreground-rgb));
+  border-radius: 10rem;
+}
+
 li.listHeading {
   display: flex;
   flex-direction: column;
@@ -36,7 +61,7 @@ li.listHeading {
 
 li.listHeading > span {
   font-weight: var(--font-weight-medium);
-  padding: 1rem 2rem;
+  padding: var(--list-item-padding);
   text-align: center;
   text-transform: uppercase;
 }

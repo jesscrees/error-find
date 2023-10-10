@@ -148,16 +148,16 @@ export default function QuestionPage({
     <>
       <PageHeader />
 
-      {isBeginningOfRound && (
-        <RoundIntroScreen
-          activityTitle={activity.activity_name}
-          roundTitle={
-            (activity as ActivityWithRounds).questions[currentRoundIndex].round_title
-          }
-        />
-      )}
+      <section className={styles.wrapper}>
+        {isBeginningOfRound && (
+          <RoundIntroScreen
+            activityTitle={activity.activity_name}
+            roundTitle={
+              (activity as ActivityWithRounds).questions[currentRoundIndex].round_title
+            }
+          />
+        )}
 
-      <section className={styles.section}>
         <div className={styles.headingContainer}>
           <h2>
             {activity.activity_name}
@@ -174,6 +174,7 @@ export default function QuestionPage({
         </div>
 
         <Question
+          className={styles.question}
           question={getCurrentQuestion(activity)}
           onAnswerChosen={(chosenAnswer: boolean) => submitAnswer(chosenAnswer)}
         />

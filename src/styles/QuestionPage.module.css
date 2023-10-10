@@ -1,15 +1,23 @@
-.section {
-  display: flex;
-  flex-direction: column;
-  height: -moz-available;
-  height: -webkit-fill-available;
-  justify-content: space-around;
-  text-align: left;
+section.wrapper {
+  display: grid;
+  height: 100%;
+
+  grid-template-rows: 1fr min-content;
+  grid-template-areas:
+    "heading"
+    "question";
 }
 
-.section .headingContainer {
+section.wrapper .headingContainer {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  padding: 0 4rem;
+  grid-area: heading;
+  justify-content: space-evenly;
+  padding: 2rem;
+}
+
+section.wrapper .question {
+  align-self: end;
+  grid-area: question;
 }

@@ -5,15 +5,15 @@
 
 .list li {
   align-items: center;
-  border-bottom: var(--border);
+  border-bottom: var(--border-light);
   display: flex;
   justify-content: center;
-  padding: 1rem 2rem;
+  padding: var(--list-item-padding);
   text-align: center;
   width: 100%;
 }
 .list li:first-of-type {
-  border-top: var(--border);
+  border-top: var(--border-light);
 }
 
 .list li .answerContainer {
