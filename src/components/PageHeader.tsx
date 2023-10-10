@@ -1,7 +1,8 @@
-import { getDataFromLocalStorage } from "@/helpers";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+
+import { getDataFromLocalStorage } from "@/helpers";
 
 function PageHeader() {
   const router = useRouter()
