@@ -36,7 +36,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## TODO
 - Make sure activities and questions are ordered using the order prop from the API data
 - Update font to match design
-- Use custom favicon
 - Check if user can go backwards and forwards through the quiz using the browser back/next buttons
 - Check if it works smoothly on mobile devices (phone, tablet, watch?)
 - Spellcheck ReadMe file
