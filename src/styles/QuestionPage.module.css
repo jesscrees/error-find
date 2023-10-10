@@ -1,6 +1,7 @@
 .section {
   display: flex;
   flex-direction: column;
+  height: -moz-available;
   height: -webkit-fill-available;
   justify-content: space-around;
   text-align: left;

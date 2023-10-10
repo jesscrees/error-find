@@ -47,6 +47,7 @@ ol {
   display: flex;
   flex-direction: column;
   list-style-type: none;
+  max-height: -moz-available;
   max-height: -webkit-fill-available;
   overflow-x: hidden;
   scroll-behavior: auto;
