@@ -32,7 +32,7 @@ export default function Results() {
       <main className={`${styles.main} ${inter.className}`}>
         Results page for all activities
       </main>
-      <Footer />
+      <Footer className={`${inter.className}`} />
     </>
   )
 }

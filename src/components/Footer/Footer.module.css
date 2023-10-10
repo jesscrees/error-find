@@ -1,7 +1,20 @@
 .footer {
-  border: 1px solid red;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
 }
 
-.footer .disabled {
+.footer a {
+  text-transform: uppercase;
+  transition: 0.1s all ease-in-out;
+}
+
+.footer a.disabled {
+  color: rgb(206, 206, 206);
   pointer-events: none;
+}
+
+.footer a:hover {
+  filter: brightness(85%);
 }

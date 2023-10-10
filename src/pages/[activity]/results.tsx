@@ -34,7 +34,7 @@ export default function ActivityResults() {
       <main className={`${styles.main} ${inter.className}`}>
         Activity {activityId} results
       </main>
-      <Footer />
+      <Footer className={`${inter.className}`} />
     </>
   )
 }

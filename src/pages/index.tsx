@@ -46,6 +46,7 @@ export default function Home({ quiz }: { quiz: QuizData }) {
       </main>
 
       <Footer
+        className={`${inter.className}`}
         linkDisabled={!isResultsLinkEnabled}
         linkHref="results"
         linkLabel={NAVIGATION_LABEL_RESULTS}
