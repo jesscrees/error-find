@@ -50,7 +50,7 @@ export default function Home({ quiz }: { quiz: QuizData }) {
 
         <Footer
           linkDisabled={!isResultsLinkEnabled}
-          linkHref="results"
+          linkHref={isResultsLinkEnabled ? 'results' : ''}
           linkLabel={NAVIGATION_LABEL_RESULTS}
         />
       </section>
