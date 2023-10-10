@@ -7,14 +7,14 @@
 
 .footer a {
   text-transform: uppercase;
-  transition: 0.1s all ease-in-out;
+  transition: var(--hover-transtion);
 }
 
 .footer a.disabled {
-  color: rgb(206, 206, 206);
+  color: rgb(var(--foreground-disabled-rgb));
   pointer-events: none;
 }
 
 .footer a:hover {
-  filter: brightness(85%);
+  filter: var(--hover-color-change);
 }

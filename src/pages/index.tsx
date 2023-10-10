@@ -14,6 +14,8 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home({ quiz }: { quiz: QuizData }) {
   const [isResultsLinkEnabled, setIsResultsLinkEnabled] = useState<boolean>(false)
 
+  const [quizData, setQuizData] = useState<QuizData>()
+
   // Ensure that quiz data has been stored in local storage
   // but retrieve pre-existing quiz data, if it already exists,
   // as it will contain the user's answers
@@ -23,6 +25,8 @@ export default function Home({ quiz }: { quiz: QuizData }) {
     if (dataRetrievedFromLocalStorage === null) {
       setDataInLocalStorage(quiz)
     }
+
+    setQuizData(dataRetrievedFromLocalStorage)
 
     // Find out if the user has started to answer questions
     // If they have then we can enable the results link
@@ -36,12 +40,12 @@ export default function Home({ quiz }: { quiz: QuizData }) {
       <main className={`${styles.main} ${inter.className}`}>
         <h3>{HEADING_CAE}</h3>
 
-        {quiz?.name && (
-          <h1>{quiz?.name}</h1>
+        {quizData?.name && (
+          <h1>{quizData?.name}</h1>
         )}
 
-        {quiz?.activities?.length > 0 && (
-          <ActivityList activities={quiz?.activities} />
+        {quizData?.activities && quizData?.activities?.length > 0 && (
+          <ActivityList activities={quizData?.activities} />
         )}
       </main>
 

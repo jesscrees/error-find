@@ -6,6 +6,10 @@
   --foreground-rgb: 37, 153, 251;
   --background-rgb: 255, 255, 255;
   --background-secondary-rgb: 252, 253, 255;
+  --foreground-disabled-rgb: 206, 206, 206;
+
+  --hover-transtion: 0.1s all ease-in-out;
+  --hover-color-change: brightness(85%);
 }
 
 @media (prefers-color-scheme: dark) {

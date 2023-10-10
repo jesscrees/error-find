@@ -14,9 +14,14 @@
 
 .list li a {
   text-transform: uppercase;
-  transition: 0.1s all ease-in-out;
+  transition: var(--hover-transtion);
 }
 
 .list li a:hover {
-  filter: brightness(85%);
+  filter: var(--hover-color-change);
+}
+
+.list li a.disabled {
+  color: rgb(var(--foreground-disabled-rgb));
+  pointer-events: none;
 }

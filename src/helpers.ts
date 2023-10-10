@@ -53,3 +53,32 @@ export function hasUserAnsweredEveryQuestion(data: QuizData) {
 
   return !hasUserNotAnsweredAQuestion
 }
+
+/*
+ * Check if user has answered every question in activity
+ */
+export function hasUserAnsweredEveryQuestionInActivity(activity: Activity) {
+  // Go through every question and see if there are any answers in user_answers array
+  let hasUserNotAnsweredAQuestion = false;
+
+  console.log(activity)
+
+  if (doesActivityContainRounds(activity)) {
+    // If the activity is a round, go through each question in each round
+    (activity as ActivityWithRounds).questions.map((round) => {
+      round.questions.map((question: Question) => {
+        if (question.user_answers.length === 0) {
+          hasUserNotAnsweredAQuestion = true
+        }
+      })
+    })
+  } else {
+    (activity as ActivityWithoutRounds).questions.map((question) => {
+      if (question.user_answers.length === 0) {
+        hasUserNotAnsweredAQuestion = true
+      }
+    })
+  }
+
+  return !hasUserNotAnsweredAQuestion
+}
