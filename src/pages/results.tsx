@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Inter } from 'next/font/google';
 import { useRouter } from 'next/router';
 
+import Footer from '@/components/Footer/Footer';
 import PageHeader from '@/components/PageHeader';
 import { getDataFromLocalStorage } from '@/helpers';
 import styles from '@/styles/Results.module.css'
@@ -31,6 +32,7 @@ export default function Results() {
       <main className={`${styles.main} ${inter.className}`}>
         Results page for all activities
       </main>
+      <Footer />
     </>
   )
 }

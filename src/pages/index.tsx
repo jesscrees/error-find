@@ -1,16 +1,19 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
 import { Inter } from 'next/font/google'
 
 import ActivityList from '@/components/ActivityList/ActivityList'
+import Footer from '@/components/Footer/Footer'
 import PageHeader from '@/components/PageHeader'
-import { HEADING_CAE } from '@/constants/language'
-import { getDataFromLocalStorage, setDataInLocalStorage } from '@/helpers'
+import { HEADING_CAE, NAVIGATION_LABEL_RESULTS } from '@/constants/language'
+import { doUserResultsExist, getDataFromLocalStorage, setDataInLocalStorage } from '@/helpers'
 import styles from '@/styles/Home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ quiz }: { quiz: QuizData }) {
+  const [isResultsLinkEnabled, setIsResultsLinkEnabled] = useState<boolean>(false)
+
   // Ensure that quiz data has been stored in local storage
   // but retrieve pre-existing quiz data, if it already exists,
   // as it will contain the user's answers
@@ -20,6 +23,10 @@ export default function Home({ quiz }: { quiz: QuizData }) {
     if (dataRetrievedFromLocalStorage === null) {
       setDataInLocalStorage(quiz)
     }
+
+    // Find out if the user has started to answer questions
+    // If they have then we can enable the results link
+    setIsResultsLinkEnabled(doUserResultsExist(dataRetrievedFromLocalStorage))
   }, [quiz])
 
   return (
@@ -37,6 +44,12 @@ export default function Home({ quiz }: { quiz: QuizData }) {
           <ActivityList activities={quiz?.activities} />
         )}
       </main>
+
+      <Footer
+        linkDisabled={!isResultsLinkEnabled}
+        linkHref="results"
+        linkLabel={NAVIGATION_LABEL_RESULTS}
+      />
     </>
   )
 }

@@ -24,3 +24,34 @@ export function doesActivityContainRounds(activity: ActivityWithRounds|ActivityW
   // TODO: Can this function be replaced with better typescript checking?
   return activity?.questions[0]?.hasOwnProperty('round_title')
 }
+
+/*
+ * Check if user results exist before allowing user to view them
+ */
+export function doUserResultsExist(data: QuizData) {
+  // TODO: this can be improved so it stops at the first true answer
+
+  // Go through every question and see if there are any answers in user_answers array
+  let hasUserAnsweredAQuestion = false;
+
+  data?.activities.map((activity: Activity) => {
+    if (doesActivityContainRounds(activity)) {
+      // If the activity is a round, go through each question in each round
+      (activity as ActivityWithRounds).questions.map((round) => {
+        round.questions.map((question: Question) => {
+          if (question.user_answers.length > 0) {
+            hasUserAnsweredAQuestion = true
+          }
+        })
+      })
+    } else {
+      (activity as ActivityWithoutRounds).questions.map((question) => {
+        if (question.user_answers.length > 0) {
+          hasUserAnsweredAQuestion = true
+        }
+      })
+    }
+  })
+
+  return hasUserAnsweredAQuestion
+}
