@@ -61,8 +61,6 @@ export function hasUserAnsweredEveryQuestionInActivity(activity: Activity) {
   // Go through every question and see if there are any answers in user_answers array
   let hasUserNotAnsweredAQuestion = false;
 
-  console.log(activity)
-
   if (doesActivityContainRounds(activity)) {
     // If the activity is a round, go through each question in each round
     (activity as ActivityWithRounds).questions.map((round) => {

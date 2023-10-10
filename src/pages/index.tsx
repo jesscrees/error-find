@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
-import { Inter } from 'next/font/google'
 
 import ActivityList from '@/components/ActivityList/ActivityList'
 import Footer from '@/components/Footer/Footer'
@@ -8,8 +7,6 @@ import PageHeader from '@/components/PageHeader'
 import { HEADING_CAE, NAVIGATION_LABEL_RESULTS } from '@/constants/language'
 import { hasUserAnsweredEveryQuestion, getDataFromLocalStorage, setDataInLocalStorage } from '@/helpers'
 import styles from '@/styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ quiz }: { quiz: QuizData }) {
   const [isResultsLinkEnabled, setIsResultsLinkEnabled] = useState<boolean>(false)
@@ -37,7 +34,7 @@ export default function Home({ quiz }: { quiz: QuizData }) {
     <>
       <PageHeader />
 
-      <main className={`${styles.main} ${inter.className}`}>
+      <main className={styles.main}>
         <h3>{HEADING_CAE}</h3>
 
         {quizData?.name && (
@@ -50,7 +47,6 @@ export default function Home({ quiz }: { quiz: QuizData }) {
       </main>
 
       <Footer
-        className={`${inter.className}`}
         linkDisabled={!isResultsLinkEnabled}
         linkHref="results"
         linkLabel={NAVIGATION_LABEL_RESULTS}

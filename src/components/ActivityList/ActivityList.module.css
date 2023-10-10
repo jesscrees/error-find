@@ -3,13 +3,12 @@
 }
 
 .list li {
-  border-color: rgb(246, 250, 254);
-  border-bottom: 1px solid;
+  border-bottom: var(--border);
   padding: 1rem 2rem;
   text-align: center;
 }
 .list li:first-of-type {
-  border-top: 1px solid;
+  border-top: var(--border);
 }
 
 .list li a {

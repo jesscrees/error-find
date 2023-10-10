@@ -32,12 +32,12 @@ function Question({
   }, [question])
 
   return (
-    <section className={`${styles.question}`}>
-      <div className={`${styles.textContainer}`}>
+    <section className={styles.question}>
+      <div className={styles.textContainer}>
         <p dangerouslySetInnerHTML={{ __html: formattedQuestion }}></p>
       </div>
 
-      <div className={`${styles.buttonContainer}`}>
+      <div className={styles.buttonContainer}>
         <Button
           label={BUTTON_LABEL_CORRECT}
           onClick={() => onAnswerChosen(true)}

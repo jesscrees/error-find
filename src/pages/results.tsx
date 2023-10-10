@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Inter } from 'next/font/google';
 import { useRouter } from 'next/router';
 
 import Footer from '@/components/Footer/Footer';
 import PageHeader from '@/components/PageHeader';
 import { getDataFromLocalStorage } from '@/helpers';
 import styles from '@/styles/Results.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Results() {
   const router = useRouter()
@@ -29,10 +26,10 @@ export default function Results() {
   return (
     <>
       <PageHeader />
-      <main className={`${styles.main} ${inter.className}`}>
+      <main className={styles.main}>
         Results page for all activities
       </main>
-      <Footer className={`${inter.className}`} />
+      <Footer />
     </>
   )
 }

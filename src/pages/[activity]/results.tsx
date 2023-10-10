@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react'
-import { Inter } from 'next/font/google'
 import { useRouter } from 'next/router'
 
 import Footer from '@/components/Footer/Footer'
 import PageHeader from '@/components/PageHeader'
-import { getDataFromLocalStorage } from '@/helpers'
+import { doesActivityContainRounds, getDataFromLocalStorage } from '@/helpers'
 import styles from '@/styles/Results.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import ListOfAnsweredQuestions from '@/components/ListOfAnsweredQuestions/ListOfAnsweredQuestions'
+import ListOfAnsweredRounds from '@/components/ListOfAnsweredRounds/ListOfAnsweredRounds'
 
 export default function ActivityResults() {
   const router = useRouter()
   const activityId = router.query.activity
 
-  const [quizData, setQuizData] = useState<QuizData>()
+  const [activityQuestions, setActivityQuestions] = useState<Question[]>()
+  const [activityRounds, setActivityRounds] = useState<Round[]>()
 
+  // Get current quiz data for the completed activity
   useEffect(() => {
    const dataRetrievedFromLocalStorage = getDataFromLocalStorage();
 
@@ -23,18 +24,32 @@ export default function ActivityResults() {
      router.push("/")
    }
 
-   setQuizData(dataRetrievedFromLocalStorage)
- }, [router]);
+   const currentActivity = dataRetrievedFromLocalStorage?.activities[Number(activityId) - 1]
 
- console.log(quizData)
+   if (doesActivityContainRounds(currentActivity)) {
+    setActivityRounds(currentActivity.questions)
+   } else {
+     setActivityQuestions(currentActivity?.questions)
+   }
+ }, [activityId, router]);
 
   return (
     <>
       <PageHeader />
-      <main className={`${styles.main} ${inter.className}`}>
+
+      <main className={styles.main}>
         Activity {activityId} results
+
+        {activityQuestions && activityQuestions?.length > 0 && (
+          <ListOfAnsweredQuestions answeredQuestions={activityQuestions} />
+        )}
+
+        {activityRounds && activityRounds?.length > 0 && (
+          <ListOfAnsweredRounds answeredRounds={activityRounds} />
+        )}
       </main>
-      <Footer className={`${inter.className}`} />
+
+      <Footer />
     </>
   )
 }

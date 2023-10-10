@@ -9,7 +9,7 @@ function Button({
 }) {
   return (
     <button
-      className={`${styles.button}`}
+      className={styles.button}
       onClick={onClick}
     >
       {label}

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import { Inter } from 'next/font/google'
 
 import PageHeader from '@/components/PageHeader'
 import Question from '@/components/Question/Question'
@@ -9,8 +8,6 @@ import RoundIntroScreen from '@/components/RoundIntroScreen/RoundIntroScreen'
 import { QUESTION_LABEL } from '@/constants/language'
 import { doesActivityContainRounds, getDataFromLocalStorage, setDataInLocalStorage } from '@/helpers'
 import styles from '@/styles/Question.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
 
 type PageProps = {
   activity: Activity
@@ -143,7 +140,6 @@ export default function QuestionPage({
 
       {isBeginningOfRound && (
         <RoundIntroScreen
-          className={inter.className}
           activityTitle={activity.activity_name}
           roundTitle={
             (activity as ActivityWithRounds)
@@ -153,7 +149,7 @@ export default function QuestionPage({
         />
       )}
 
-      <main className={`${styles.main} ${inter.className}`}>
+      <main className={styles.main}>
         <h2>
           {activity.activity_name}
           {isRound && (` / ${(

@@ -1,0 +1,26 @@
+.list {
+  background-color: rgb(var(--background-secondary-rgb));
+}
+
+.list li {
+  border-bottom: var(--border);
+  display: flex;
+  justify-content: center;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+.list li:first-of-type {
+  border-top: var(--border);
+}
+
+.list li .answerContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: space-between;
+  width: 20rem;
+}
+
+.list li span {
+  text-transform: uppercase;
+}
