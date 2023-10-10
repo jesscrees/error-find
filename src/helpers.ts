@@ -26,32 +26,30 @@ export function doesActivityContainRounds(activity: ActivityWithRounds|ActivityW
 }
 
 /*
- * Check if user results exist before allowing user to view them
+ * Check if user has answered every question
  */
-export function doUserResultsExist(data: QuizData) {
-  // TODO: this can be improved so it stops at the first true answer
-
+export function hasUserAnsweredEveryQuestion(data: QuizData) {
   // Go through every question and see if there are any answers in user_answers array
-  let hasUserAnsweredAQuestion = false;
+  let hasUserNotAnsweredAQuestion = false;
 
   data?.activities.map((activity: Activity) => {
     if (doesActivityContainRounds(activity)) {
       // If the activity is a round, go through each question in each round
       (activity as ActivityWithRounds).questions.map((round) => {
         round.questions.map((question: Question) => {
-          if (question.user_answers.length > 0) {
-            hasUserAnsweredAQuestion = true
+          if (question.user_answers.length === 0) {
+            hasUserNotAnsweredAQuestion = true
           }
         })
       })
     } else {
       (activity as ActivityWithoutRounds).questions.map((question) => {
-        if (question.user_answers.length > 0) {
-          hasUserAnsweredAQuestion = true
+        if (question.user_answers.length === 0) {
+          hasUserNotAnsweredAQuestion = true
         }
       })
     }
   })
 
-  return hasUserAnsweredAQuestion
+  return !hasUserNotAnsweredAQuestion
 }

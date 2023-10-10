@@ -6,7 +6,7 @@ import ActivityList from '@/components/ActivityList/ActivityList'
 import Footer from '@/components/Footer/Footer'
 import PageHeader from '@/components/PageHeader'
 import { HEADING_CAE, NAVIGATION_LABEL_RESULTS } from '@/constants/language'
-import { doUserResultsExist, getDataFromLocalStorage, setDataInLocalStorage } from '@/helpers'
+import { hasUserAnsweredEveryQuestion, getDataFromLocalStorage, setDataInLocalStorage } from '@/helpers'
 import styles from '@/styles/Home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -26,7 +26,7 @@ export default function Home({ quiz }: { quiz: QuizData }) {
 
     // Find out if the user has started to answer questions
     // If they have then we can enable the results link
-    setIsResultsLinkEnabled(doUserResultsExist(dataRetrievedFromLocalStorage))
+    setIsResultsLinkEnabled(hasUserAnsweredEveryQuestion(dataRetrievedFromLocalStorage))
   }, [quiz])
 
   return (
