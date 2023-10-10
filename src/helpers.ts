@@ -31,13 +31,13 @@ export function doesActivityContainRounds(
  */
 export async function hasUserAnsweredEveryQuestion(data: QuizData) {
   // Go through every question, in every activity, and see if there are any answers in user_answers array
-  let hasUserNotAnsweredAQuestion = false
+  let hasUserAnsweredEveryQuestion: boolean[] = []
 
   await data?.activities.map((activity: Activity) => {
-    hasUserNotAnsweredAQuestion = !hasUserAnsweredEveryQuestionInActivity(activity)
+    hasUserAnsweredEveryQuestion.push(hasUserAnsweredEveryQuestionInActivity(activity))
   })
 
-  return !hasUserNotAnsweredAQuestion
+  return !hasUserAnsweredEveryQuestion.includes(false)
 }
 
 /*

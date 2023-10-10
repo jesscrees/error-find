@@ -28,17 +28,13 @@ export default function Home({ quiz }: { quiz: QuizData }) {
       setQuizData(dataRetrievedFromLocalStorage)
     }
 
-    let areAllQuestionsAnswered = false
-    async function findIfAllQuestionsAnswered() {
-      areAllQuestionsAnswered = await hasUserAnsweredEveryQuestion(dataRetrievedFromLocalStorage)
-    }
-    findIfAllQuestionsAnswered()
-
     // Find out if the user has started to answer questions
     // If they have then we can enable the results link
-    setIsResultsLinkEnabled(
-      areAllQuestionsAnswered
-    )
+    async function findIfAllQuestionsAnswered() {
+      const results = await hasUserAnsweredEveryQuestion(dataRetrievedFromLocalStorage)
+      setIsResultsLinkEnabled(results)
+    }
+    findIfAllQuestionsAnswered()
   }, [quiz])
 
   return (
