@@ -2,10 +2,11 @@ import { useEffect } from 'react'
 import { GetStaticProps } from 'next'
 import { Inter } from 'next/font/google'
 
+import ActivityList from '@/components/ActivityList/ActivityList'
+import PageHeader from '@/components/PageHeader'
 import { HEADING_CAE } from '@/constants/language'
 import { getDataFromLocalStorage, setDataInLocalStorage } from '@/helpers'
 import styles from '@/styles/Home.module.css'
-import ActivityList from '@/components/ActivityList/ActivityList'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,17 +23,21 @@ export default function Home({ quiz }: { quiz: QuizData }) {
   }, [quiz])
 
   return (
-    <main className={`${styles.main} ${inter.className}`}>
-      <h3>{HEADING_CAE}</h3>
+    <>
+      <PageHeader />
 
-      {quiz?.name && (
-        <h1>{quiz?.name}</h1>
-      )}
+      <main className={`${styles.main} ${inter.className}`}>
+        <h3>{HEADING_CAE}</h3>
 
-      {quiz?.activities?.length > 0 && (
-        <ActivityList activities={quiz?.activities} />
-      )}
-    </main>
+        {quiz?.name && (
+          <h1>{quiz?.name}</h1>
+        )}
+
+        {quiz?.activities?.length > 0 && (
+          <ActivityList activities={quiz?.activities} />
+        )}
+      </main>
+    </>
   )
 }
 

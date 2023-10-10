@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { Inter } from "next/font/google";
 
+import PageHeader from "@/components/PageHeader";
 import { doesActivityContainRounds } from "@/helpers";
 import styles from '@/styles/Question.module.css'
 
@@ -25,6 +26,7 @@ export default function QuestionPage({
 
   return (
     <>
+      <PageHeader />
       <main className={`${styles.main} ${inter.className}`}>
         Question Page
       </main>
