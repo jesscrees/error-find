@@ -60,7 +60,7 @@ li.listHeading {
 }
 
 li.listHeading > span {
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-bold);
   padding: var(--list-item-padding);
   text-align: center;
   text-transform: uppercase;
