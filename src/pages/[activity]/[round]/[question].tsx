@@ -143,6 +143,8 @@ export default function QuestionPage({
 
       {isBeginningOfRound && (
         <RoundIntroScreen
+          className={inter.className}
+          activityTitle={activity.activity_name}
           roundTitle={
             (activity as ActivityWithRounds)
               .questions[currentRoundIndex]
