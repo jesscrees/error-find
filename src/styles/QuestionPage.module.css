@@ -21,3 +21,19 @@ section.wrapper .question {
   align-self: end;
   grid-area: question;
 }
+
+section.wrapper .fadeOutRoundIntroScreen {
+  opacity: 0;
+  transition: visibility 0s 0.2s, opacity 0.2s ease-out;
+  visibility: hidden;
+}
+
+/*
+  Removes animated styles
+  See this resource for more information: https://www.a11yproject.com/posts/understanding-vestibular-disorders/
+*/
+@media (prefers-reduced-motion) {
+  section.wrapper .fadeOutRoundIntroScreen {
+    display: none;
+  }
+}

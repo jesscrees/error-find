@@ -32,6 +32,8 @@ export default function QuestionPage({
 
   const MILLISECONDS_TO_SHOW_ROUND_NUMBER_SCREEN = 1000
 
+  const ROUND_INTRO_SCREEN_ID = 'roundIntroScreen'
+
   // Store current quiz data
   const [quizData, setQuizData] = useState<QuizData>()
 
@@ -73,11 +75,14 @@ export default function QuestionPage({
       setIsBeginningOfRound(true)
 
       roundIntroScreenTimer = setTimeout(() => {
-        setIsBeginningOfRound(false)
+        document
+          .getElementById(ROUND_INTRO_SCREEN_ID)
+          ?.classList.add(styles.fadeOutRoundIntroScreen)
       }, MILLISECONDS_TO_SHOW_ROUND_NUMBER_SCREEN)
     }
 
     return () => {
+      setIsBeginningOfRound(false)
       clearTimeout(roundIntroScreenTimer)
     }
   }, [currentRoundIndex, isRound, questionId])
@@ -152,8 +157,10 @@ export default function QuestionPage({
         {isBeginningOfRound && (
           <RoundIntroScreen
             activityTitle={activity.activity_name}
+            id={ROUND_INTRO_SCREEN_ID}
             roundTitle={
-              (activity as ActivityWithRounds).questions[currentRoundIndex].round_title
+              (activity as ActivityWithRounds).questions[currentRoundIndex]
+                .round_title
             }
           />
         )}
@@ -163,7 +170,8 @@ export default function QuestionPage({
             {activity.activity_name}
             {isRound &&
               ` / ${
-                (activity as ActivityWithRounds).questions[currentRoundIndex].round_title
+                (activity as ActivityWithRounds).questions[currentRoundIndex]
+                  .round_title
               }`}
           </h2>
 
