@@ -29,7 +29,7 @@ export default function Home({ quiz }: { quiz: QuizData }) {
     }
   }, [quiz])
 
-  // Find out if the user has started to answer questions
+  // Find out if the user has answered every question
   // If they have then we can enable the results link
   useEffect(() => {
     async function findIfAllQuestionsAnswered() {

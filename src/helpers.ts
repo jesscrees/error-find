@@ -27,7 +27,7 @@ export function doesActivityContainRounds(
 }
 
 /*
- * Check if user has answered every question
+ * Check if user has answered every question in quiz
  */
 export async function hasUserAnsweredEveryQuestion(data: QuizData) {
   // Go through every question, in every activity, and see if there are any answers in user_answers array

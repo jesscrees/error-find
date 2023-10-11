@@ -7,6 +7,7 @@
   padding: var(--list-item-padding);
   text-align: center;
 }
+
 .list li:first-of-type {
   border-top: var(--border-light);
 }

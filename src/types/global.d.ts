@@ -20,9 +20,11 @@ declare global {
     order: number
     questions: []
   }
+
   interface ActivityWithRounds extends Activity {
     questions: Round[]
   }
+
   interface ActivityWithoutRounds extends Activity {
     questions: Question[]
   }

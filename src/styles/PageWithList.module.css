@@ -29,7 +29,7 @@ section.wrapper footer {
   height: 6rem;
 }
 
-/* Only outermost list scrolls */
+/* Only outermost list should scroll */
 section.wrapper > ol {
   display: flex;
   flex-direction: column;

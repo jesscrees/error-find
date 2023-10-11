@@ -36,6 +36,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Assumptions I made about the logic of the app
 - Activities only become enabled when the previous activity has been completed.
 - Activities should start at the first question, even if the activity was partially completed before.
+- If a user answers the same question a 2nd time, then it overrides their previous answer.
 - Answering the last question of a round, automatically starts the next round.
 - The round introduction screen automatically transitions into the 1st question of the round.
 - There is a results page that only becomes enabled when all activities have been completed.
