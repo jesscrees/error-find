@@ -1,21 +1,22 @@
 # Error Find
 This game teaches you to find mistakes in written text.
 
-## Project Details
+## Tech stack
+- [Next.js](https://nextjs.org/) - a production-ready framework that works well for creating static sites.
+- Hosted on [AWS](https://main.d2pi1shfsx45in.amplifyapp.com/) and [Vercel](https://error-find.vercel.app/). Code is automatically deployed whenever a change is pushed up to the main branch of this repo.
+- ESLint embedded in the project for linting.
+- Prettier embedded in the project for consistent formatting.
 
-### Tech Stack
-This project uses [Next.js](https://nextjs.org/), as it is a production-ready framework that works well for creating static sites. This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Project structure
+- src/components - contains all of the components used across all of the pages.
+  - src/components/componentName - if a component is styled then it lives in its own folder where the logic and styling are kept together.
+- src/constants - contains any constants that are needed site-wide. In this app, that means the text used on the screen that doesn't come directly from the API.
+- src/pages - contains each of the screens shown in the app.
+- src/styles - contains the global styles as well as the 2 screen styles shown in the app.
+- src/types - contains the types used in the app.
+- src/helpers.ts - utility functions that are used site-wide.
 
-### Designs
-The wireframe designs represent the flow of the app, [here are the wireframes in Adobe XD](https://xd.adobe.com/view/36feaa87-e6e3-4cc4-4acc-91842640b5b1-40cf/screen/16c083b5-d6a7-4a5d-9ace-b8e20aa84a27).
-
-### Data
-The data for the quiz is provided via an API. [Here is the mock API that is used in this project](https://s3.eu-west-2.amazonaws.com/interview.mock.data/payload.json). There are 2 types of questions that can come from the API and their data structure differs slightly.
-
-### Hosting
-This code is automatically deployed to [Vercel](https://error-find.vercel.app/) when ever a change is pushed to the main branch of this repo on GitHub. Vercel created Next.js so their deployment process works very smoothly with Next.js projects.
-
-## How to run this project
+## How to run this project locally
 First, install the dependencies for this project:
 ```bash
 npm install
@@ -32,9 +33,17 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. This page will auto-update as you edit the file.
 
+## Assumptions I made about the logic of the app
+- Activities only become enabled when the previous activity has been completed.
+- Activities should start at the first question, even if the activity was partially completed before.
+- Answering the last question of a round, automatically starts the next round.
+- The round introduction screen automatically transitions into the 1st question of the round.
+- There is a results page that only becomes enabled when all activities have been completed.
+  - That results page should contain the results for every activity.
+- Assumed a 404 page should exist and should match the styling of other pages.
+- Disabled links should also be disabled for screen readers, so I removed the href from the links to ensure users wouldn't be able to navigate to disabled links when using a keyboard.
 
-## TODO
-- Spellcheck ReadMe file
-- Add diagrams to README to illustrate how app is structured (Use Mermaid for this?)
-- Add coding standards to README
-- Deploy project to AWS and Vercel
+## Assumptions I made about the design
+- The wireframes show screens in both portrait and landscape so I assumed that the app should be full-screen on all screen sizes.
+- Font - I couldn't find which font was being used in the design so I used a similar one from Google called Inter.
+- Spacing and sizes - I couldn't inspect the wireframes to see how much padding/margin was being used, I also couldn't see exactly what the font sizes were, so I made an educated guess based on the visuals alone.
